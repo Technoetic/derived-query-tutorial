@@ -1,0 +1,41 @@
+{
+  "schema":1,
+  "before":[
+    "class Order {",
+    "  constructor() {",
+    "    this._prices = [];",
+    "    this._total = 0;",
+    "  }",
+    "  add(price) {",
+    "    this._prices.push(price);",
+    "    this._total += price;",
+    "  }",
+    "  get total() { return this._total; }",
+    "}",
+    "const order = new Order();",
+    "order.add(3500);",
+    "order.add(3500);",
+    "order.add(4000);",
+    "console.log(order.total); // 11000"
+  ],
+  "after":[
+    "class Order {",
+    "  constructor() {",
+    "    this._prices = [];",
+    "  }",
+    "  add(price) {",
+    "    this._prices.push(price);",
+    "  }",
+    "  get total() {",
+    "    return this._prices.reduce((sum, price) => sum + price, 0);",
+    "  }",
+    "}",
+    "const order = new Order();",
+    "order.add(3500);",
+    "order.add(3500);",
+    "order.add(4000);",
+    "console.log(order.total); // 11000"
+  ],
+  "output":11000,
+  "explanation":"전 코드는 가격 목록과 합계를 함께 보관하고, 추가할 때 합계도 올바르게 갱신해요. 후 코드는 가격 목록만 보관하고 합계를 읽을 때 더해요. 같은 주문에 둘 다 11,000원을 반환하므로, 이 예는 잘못된 합계를 고치는 작업과 구분되는 리팩터링이에요. 짧은 예제에서는 수량 대신 한 잔의 가격을 하나씩 추가해요."
+}

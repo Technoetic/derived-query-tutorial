@@ -1,0 +1,60 @@
+{
+  "schema": 1,
+  "draft": {"noteMaxLength":1000},
+  "items": [
+    {
+      "id":"find-source",
+      "title":"이 주문의 원본은 무엇일까요?",
+      "story":"에스프레소 단가 3,500원, 수량 2잔. 합계는 7,000원이에요.",
+      "question":"현재 합계를 다시 계산할 때 필요한 원본은?",
+      "choices":[{"id":"price-and-quantity","label":"단가와 수량"},{"id":"stored-total","label":"따로 저장한 합계만"},{"id":"screen-color","label":"주문 화면의 색상"}],
+      "answer":"price-and-quantity",
+      "explanation":"합계는 단가 × 수량으로 구해요. 이 예에서 단가와 수량이 원본이고 합계가 파생 값이에요."
+    },
+    {
+      "id":"stale-total",
+      "title":"수량만 바꾸었어요.",
+      "story":"에스프레소 두 잔의 합계 7,000원을 저장했어요. 수량을 세 잔으로 고쳤지만 저장된 합계는 갱신하지 않았어요.",
+      "question":"지금 두 값의 상태는?",
+      "choices":[{"id":"still-correct","label":"저장된 합계 7,000원이 현재 주문과 맞아요."},{"id":"out-of-sync","label":"현재 주문은 10,500원인데 저장된 합계는 7,000원이에요."},{"id":"source-unchanged","label":"합계가 그대로니 수량도 두 잔이에요."}],
+      "answer":"out-of-sync",
+      "explanation":"원본을 바꾸어도 별도 저장한 파생 값이 저절로 갱신되지는 않아요. 두 값을 일치시키는 코드가 빠져서 어긋났어요."
+    },
+    {
+      "id":"bugfix-or-refactor",
+      "title":"틀린 값을 먼저 고치는 이유",
+      "story":"현재 주문은 15,000원인데 저장된 합계가 11,500원이에요. 먼저 합계를 15,000원으로 바로잡았어요.",
+      "question":"이 단계의 성격은?",
+      "choices":[{"id":"bug-repair","label":"현재 잘못된 결과를 바로잡는 버그 수정"},{"id":"same-behavior","label":"결과를 보존하는 리팩터링 자체"},{"id":"rename-only","label":"이름만 바꾸는 작업"}],
+      "answer":"bug-repair",
+      "explanation":"11,500원에서 15,000원으로 결과를 바로잡았으니 버그 수정이에요. 값이 맞는 상태에서 저장 방식만 질의 방식으로 바꾸고 같은 결과인지 확인하는 단계가 리팩터링이에요."
+    },
+    {
+      "id":"pure-query",
+      "title":"질의는 어떤 읽기일까요?",
+      "story":"합계를 별도로 보관하지 않고, 요청받을 때 주문 항목을 더해서 반환하려고 해요.",
+      "question":"이 튜토리얼에서 질의에 맞는 동작은?",
+      "choices":[{"id":"write-on-read","label":"합계를 읽을 때마다 수량을 하나 늘려요."},{"id":"sql-required","label":"반드시 SQL로 서버에 요청해요."},{"id":"derive-without-write","label":"원본을 바꾸지 않고 현재 합계를 계산해 돌려줘요."}],
+      "answer":"derive-without-write",
+      "explanation":"여기서 질의는 값을 구하는 읽기예요. 계산하는 동안 주문이나 저장 상태를 바꾸지 않아요. SQL이나 네트워크 없이 메모리 안에서도 할 수 있어요."
+    },
+    {
+      "id":"historical-receipt",
+      "title":"어제 확정한 영수증도 다시 계산할까요?",
+      "story":"어제 손님이 결제한 금액을 확정해 보관했어요. 오늘 메뉴 가격이 올랐어요.",
+      "question":"어제 영수증의 금액은 어떻게 다뤄야 할까요?",
+      "choices":[{"id":"use-new-price","label":"오늘 가격으로 다시 계산해 영수증을 바꿔요."},{"id":"keep-agreed-record","label":"당시 확정한 금액을 과거 사실로 보관해요."},{"id":"delete-every-total","label":"합계라는 이유만으로 모두 지워요."}],
+      "answer":"keep-agreed-record",
+      "explanation":"확정된 거래 금액은 당시의 사실이에요. 현재 메뉴 가격에서 구하는 합계와 의미가 달라요. 파생되어 보인다는 이유만으로 과거 기록을 지우면 안 돼요."
+    },
+    {
+      "id":"measured-cache",
+      "title":"계산 비용이 실제로 크다면?",
+      "story":"큰 주문 집계가 느리다는 것을 측정으로 확인했어요. 같은 값을 자주 읽는 상황이에요.",
+      "question":"가장 적절한 판단은?",
+      "choices":[{"id":"always-remove","label":"속도와 관계없이 모든 캐시를 없애요."},{"id":"never-measure","label":"느릴 것 같으니 측정 없이 값을 더 저장해요."},{"id":"measure-and-define","label":"측정 결과를 바탕으로 캐시 필요성과 갱신 규칙을 정해요."}],
+      "answer":"measure-and-define",
+      "explanation":"질의로 단순해지는 장점과 실제 계산 비용을 함께 봐요. 캐시가 필요하다면 원본, 무효화 시점, 갱신 책임을 분명히 하고 결과가 맞는지 검증해요."
+    }
+  ]
+}

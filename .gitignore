@@ -1,0 +1,6 @@
+dist*/
+.test-build*/
+.previous-pages/
+.qa-*/
+node_modules/
+*.log
