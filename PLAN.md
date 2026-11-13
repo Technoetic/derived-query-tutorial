@@ -19,6 +19,6 @@ Tasks:
 - [x] Platform: adapt generic services/shared routes/build/server/Pages workflow/storage keys to derived-query-tutorial and /proof; retain meaningful async/race/navigation/storage/build tests. Own scripts/*, services/*, shared/routes*, route-table, shell-copy, generic screen.js and infrastructure tests. No commits/push by implementers.
 - [x] Root UI: original QUERY / CAFE visual design, semantic HTML and CSS layers, home/story/lab/proof/code/summary and adapted practice/widgets, entry/screen table. Keyboard, reduced motion and narrow screens.
 - [x] Integrate and independently review all tests, build, content accuracy and dependency directions. Fix demonstrated issues.
-- [ ] Actual Aside local interactions/deep links/history/narrow layout, load failure/stale data, draft/save and A/B update matrix; document exact coverage and untested rows.
+- [x] Actual Aside local interactions/deep links/history/narrow layout, load failure/stale data, draft/save and A/B update matrix; document exact coverage and untested rows.
 - [ ] Publish A to a new explicitly authorized public GitHub repository with Pages. Open A, deploy a small verified B change, use next clean route navigation to prove real public full-document update. Verify public hashes, direct links and genuine asset/API errors.
 - [ ] Final six-field handoff, local vault index/log/own notes commit, URL handoff. Never push the private D:/NS vault.
